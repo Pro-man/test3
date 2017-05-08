@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <body>
+    Welcome to ninja gold!
+    <br>
+    Your Gold:<input type="text" name="" value="{{request.session.gold}}">
+    Gold = {{request.session.gold}}
+    <br>
+    <br>
+    <form action = '/process_money/house' method = 'post'>
+      {% csrf_token %}
+      House<input type="hidden" name="data" value="house">
+      <input type = 'submit' value = 'Find Gold!'>
+    </form>
+    <br>
+    <form action = '/process_money/casino' method = 'post'>
+    {% csrf_token %}
+    Casino<input type="hidden" name="data" value="casino">
+    <input type = 'submit' value = 'Find Gold!'>
+    </form>
+    <br>
+    <form action = '/process_money/farm' method = 'post'>
+    {% csrf_token %}
+    Farm<input type="hidden" name="data" value="farm">
+    <input type = 'submit' value = 'Find Gold!'>
+    </form>
+    <br>
+    <form action = '/process_money/cave' method = 'post'>
+    {% csrf_token %}
+    Cave<input type="hidden" name="data" value="cave">
+    <input type = 'submit' value = 'Find Gold!'>
+    </form>
+    <br>
+    {% for x in request.session.activities %}
+      <p>{{x}}</p>
+    {% endfor %}
+    {% for element in request.session.greeting %}
+      <p>{{element.greeting}}</p>
+    {% endfor %}
+    <form class="reset-form" action="/reset" method="get">
+      {% csrf_token %}
+      <input type="submit" name="reset" value="Reset Ninja Gold">
+    </form>
+  </body>
+</html>
